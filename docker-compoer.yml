@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  java-dev:
+    build:
+      context: .
+      args:
+        USER_ID: ${USER_ID}
+        GROUP_ID: ${GROUP_ID}
+    container_name: ambiente-java
+    user: "${USER_ID}:${GROUP_ID}"
+    volumes:
+      - .:/project
+      - ${HOME}/.m2:/home/devuser/.m2
+    working_dir: /project
+    stdin_open: true
+    tty: true
